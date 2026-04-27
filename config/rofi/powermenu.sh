@@ -50,8 +50,7 @@ nerd_font_icons[shutdown]=$'\Uf0425'
 nerd_font_icons[cancel]=$'\Uf0156'
 
 declare -A actions
-actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID-}"
-#actions[switchuser]="???"
+actions[lockscreen]="(sleep 0.5 && i3lockr -b 20) >/dev/null 2>&1 &"
 actions[logout]="killall dwm"
 actions[suspend]="systemctl suspend"
 actions[hibernate]="systemctl hibernate"
@@ -352,7 +351,7 @@ else
                 echo "Selected: $entry" >&2
             else
                 # Perform the action
-                ${actions[$entry]}
+                eval "${actions[$entry]}"
             fi
             exit 0
         fi
