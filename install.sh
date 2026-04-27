@@ -25,6 +25,11 @@ info "Package manager: $PKG_CMD"
 info "Installing build dependencies..."
 install_packages base-devel libx11 libxft libxinerama imlib2 libxcb xcb-util freetype2 fontconfig
 
+# ── Custom: ilockr-bin (AUR) ───────────────
+info "Installing ilockr-bin (AUR)..."
+install_packages ilockr-bin
+ok "ilockr-bin installed."
+
 if pacman -Qq 2>/dev/null | grep -q '^xlibre'; then
     info "Xlibre detected — skipping xorg-server."
 elif ! pacman -Qi xorg-server &>/dev/null; then
